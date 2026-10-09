@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حديقة الألعاب المائية: همزتا القطع والوصل</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{font-family:Cairo,"Segoe UI",Tahoma,sans-serif;font-weight:800;color:#0b4f8a;background:linear-gradient(#aeeeff 0,#4fc9f7 45%,#1e8fe0 100%) fixed;overflow-x:hidden;user-select:none;-webkit-user-select:none}
+#sky{position:fixed;top:4px;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;font-size:30px;pointer-events:none;z-index:0}
+.bub{position:fixed;bottom:-30px;font-size:24px;opacity:.55;pointer-events:none;z-index:0;animation:rise 9s linear infinite}
+@keyframes rise{to{transform:translateY(-110vh)}}
+#app{position:relative;z-index:1;max-width:600px;margin:0 auto;padding:44px 12px 70px;text-align:center}
+#hud{display:flex;justify-content:space-between;align-items:center;background:#ffffffee;border-radius:16px;padding:6px 14px;font-size:19px;margin-bottom:10px}
+h1{margin:6px 0;font-size:clamp(25px,6.6vw,36px);color:#fff;text-shadow:0 3px 0 #0b4f8a}
+.t{font-size:clamp(18px,5vw,23px);margin:6px 0 12px;background:#ffffffee;border-radius:18px;padding:8px 14px;display:inline-block;line-height:1.5}
+.card{background:#fffffff2;border-radius:22px;padding:14px 16px;margin:10px 0;font-size:clamp(17px,4.5vw,20px);line-height:1.95;text-align:right}
+.card b{color:#d6246e}
+.card ul{margin:4px 0;padding:0 20px}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.btn{font:inherit;font-size:22px;border:0;border-radius:40px;padding:11px 28px;background:#ffd23f;color:#0b4f8a;box-shadow:0 6px 0 #b8940f;cursor:pointer;margin:8px}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #b8940f}
+.btn.g{background:#12b76a;color:#fff;box-shadow:0 6px 0 #0a7a47}
+.ex{display:inline-block;background:#e0f7ff;border:3px solid #00a6e0;border-radius:14px;padding:0 12px;margin:2px 3px;cursor:pointer;font-size:23px;line-height:1.6}
+.ex.w{background:#fff3cd;border-color:#ffb703}
+table{width:100%;border-collapse:collapse;font-size:17px;line-height:1.6}
+th,td{border:3px solid #4fc9f7;padding:6px;text-align:center}th{background:#e0f7ff}
+.ball{width:clamp(150px,44vw,190px);height:clamp(150px,44vw,190px);margin:6px auto 14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#bdeaff);border:6px solid #00a6e0;display:flex;align-items:center;justify-content:center;font-size:clamp(34px,10vw,50px);box-shadow:0 8px 0 #0003;padding:8px;line-height:1.2}
+.ball.s{width:auto;height:auto;border-radius:22px;font-size:clamp(20px,5.2vw,25px);padding:14px 16px;max-width:100%}
+.opt{font:inherit;font-size:clamp(22px,6vw,28px);min-width:90px;border:0;border-radius:18px;padding:12px 22px;background:#fff;color:#0b4f8a;box-shadow:0 5px 0 #0005;cursor:pointer}
+.opt.ok{background:#12b76a;color:#fff}.opt.no{background:#ef4444;color:#fff}
+#fb{min-height:56px;font-size:19px;background:#fffffff2;border-radius:16px;padding:8px 12px;margin-top:10px;display:none;line-height:1.7}
+.zone{width:47%;min-height:150px;background:#ffffffe8;border:5px dashed #00a6e0;border-radius:20px;padding:6px;font-size:19px}
+.zone h3{margin:2px 0 6px;font-size:20px}.zone.w{border-color:#ffb703}
+.zone span{display:inline-block;background:#d3f9d8;border-radius:10px;padding:0 8px;margin:2px;font-size:20px}
+.chip{background:#fff;border:4px solid #0b4f8a;border-radius:16px;padding:6px 16px;font-size:26px;cursor:grab;touch-action:none;position:relative;z-index:5}
+.chip.up{z-index:50;box-shadow:0 10px 18px #0006}
+.cn{position:relative;display:flex;justify-content:space-between;padding:0 4px}
+.col{display:flex;flex-direction:column;gap:12px;z-index:2}
+.it{font:inherit;background:#fff;border:4px solid #0b4f8a;border-radius:16px;padding:6px;line-height:1.3;min-height:62px;cursor:pointer;color:#0b4f8a}
+.it.l{width:96px;font-size:28px}.it.r{width:158px;font-size:17px}
+.it.sel{background:#fff3bf;transform:scale(1.06)}.it.done{background:#d3f9d8;border-color:#12b76a}
+#ln{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.sen{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#ffffffee;border-radius:20px;padding:16px 10px;margin-bottom:6px}
+.wd{font:inherit;font-size:clamp(24px,6.5vw,30px);background:none;border:0;border-radius:50%/60%;padding:4px 12px;cursor:pointer;color:#0b4f8a;position:relative}
+.wd.ring{box-shadow:0 0 0 5px #ef4444 inset;background:#fff1f1}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.goal{position:fixed;top:30%;left:0;right:0;font-size:clamp(46px,14vw,80px);color:#fff;text-shadow:0 5px 0 #0b4f8a;z-index:90;pointer-events:none;animation:gl 1.3s forwards}
+@keyframes gl{0%{transform:scale(.2);opacity:0}30%{transform:scale(1.1);opacity:1}100%{transform:scale(1.4);opacity:0}}
+.fall{position:fixed;top:-40px;font-size:30px;z-index:80;pointer-events:none;animation:fl 2.2s linear forwards}
+@keyframes fl{to{transform:translateY(110vh) rotate(360deg)}}
+.big{font-size:84px}
+#cr{font-size:13px;color:#fff;margin-top:24px}
+@media (prefers-reduced-motion:reduce){.fall,.goal,.bub{animation-duration:.01s}}
+</style>
+</head>
+<body>
+<div id="sky"><span>☀️</span><span>🌴</span><span>🛝</span><span>🌴</span></div>
+<span class="bub" style="left:8%;animation-delay:0s">🫧</span><span class="bub" style="left:30%;animation-delay:3s">🫧</span><span class="bub" style="left:62%;animation-delay:5s">🫧</span><span class="bub" style="left:88%;animation-delay:1.5s">🫧</span>
+<div id="app"><div id="hud"><span>🌊 حديقة الألعاب المائية</span><span id="sc">💧 0</span></div><div id="st"></div><div id="cr">تصميم: T.Badria Alfalahi</div></div>
+<script>
+const st=document.getElementById('st'),sc=document.getElementById('sc');
+let ac=null,score=0;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const sh=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+const PR=['أحسنت يا عمر!','ممتاز يا بطل!','رائع يا عمر!','إجابة صحيحة، بارك الله فيك يا عمر!','أنت بطل يا عمر!'];
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.8;speechSynthesis.speak(u)}catch(e){}}
+function tone(fs,d,type,v){if(!ac)return;fs.forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+i*d;o.type=type;o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d*1.2);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+d*1.3)})}
+function splash(){if(!ac)return;const b=ac.createBuffer(1,ac.sampleRate*.6,ac.sampleRate),d=b.getChannelData(0);for(let j=0;j<d.length;j++)d[j]=(Math.random()*2-1)*Math.pow(1-j/d.length,2);const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=b;f.type='lowpass';f.frequency.setValueAtTime(3000,ac.currentTime);f.frequency.exponentialRampToValueAtTime(400,ac.currentTime+.6);g.gain.value=.5;s.connect(f);f.connect(g);g.connect(ac.destination);s.start()}
+function confetti(){for(let i=0;i<20;i++){const s=document.createElement('span');s.className='fall';s.textContent=pick(['💦','🫧','⭐','🐬','💧']);s.style.left=Math.random()*95+'vw';s.style.animationDelay=Math.random()*.5+'s';document.body.append(s);setTimeout(()=>s.remove(),3000)}}
+function win(){score++;sc.textContent='💧 '+score;const g=document.createElement('div');g.className='goal';g.textContent='ممتاز! 💦';document.body.append(g);setTimeout(()=>g.remove(),1400);splash();tone([523,659,784,1047],.1,'triangle',.2);confetti();say(pick(PR))}
+function bad(el){tone([500,300],.15,'sine',.2);if(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake')}say('حاول مرة أخرى يا عمر')}
+function page(t,b){st.innerHTML=`<div class="t">${t}</div>${b}`}
+function go(i){window.scrollTo(0,0);[start,intro,teams,connect,circle,fill,end][i]()}
+const fb=h=>{const f=document.getElementById('fb');f.style.display='block';f.innerHTML=h};
+const MAX=8+5+6+7;
+
+function start(){score=0;sc.textContent='💧 0';st.innerHTML='<h1>حديقة الألعاب المائية 🌊</h1><div class="t">درس همزتي القطع والوصل<br>للبطل عمر – الصف الخامس</div><div class="big">🛝🏊‍♂️🐬</div><br><button class="btn" id="go">ابدأ الرحلة</button>';
+document.getElementById('go').onclick=()=>{ac=ac||new (window.AudioContext||window.webkitAudioContext)();splash();say('مرحباً بالبطل عمر! هيا نتعلم القاعدة');go(1)}}
+
+const E=(w,c)=>`<span class="ex${c?' w':''}" data-s="${w}">${w}</span>`;
+const SL=[
+['مرحباً بالبطل عمر 🌊','نبدأ اليوم رحلتنا في حديقة الألعاب المائية، وسنتعلّم الفرق بين همزتين تأتيان في بداية الكلمات:<ul><li><b>همزة القطع</b></li><li><b>همزة الوصل</b></li></ul>اقرأ الشرح بتمعّن، وانقر الكلمات الملونة لتسمعها، ثم اجمع القطرات 💧 بإجاباتك الصحيحة في التدريبات.'],
+['أولاً: همزة القطع ⭐',`<b>تعريفها:</b> همزة <b>تُنطق دائماً</b>، في أول الكلام وفي وسطه.<br><b>كتابتها:</b> تُكتب <b>برأس همزة</b>: (أ) إذا كانت مفتوحة أو مضمومة، و(إ) إذا كانت مكسورة.<br><b>أمثلة:</b> ${E('أسد')}${E('أرض')}${E('إبل')}${E('أكل')}<br><b>سبب التسمية:</b> لأنها تقطع الكلام عمّا قبلها فتبقى واضحة في النطق، ففي قولنا (ذهب أحمدُ وأخوه) تُنطق الهمزة في (أحمد) و(أخوه).`],
+['مواضع همزة القطع ⭐',`<ul><li>أغلب <b>الأسماء</b>: ${E('أرض')}${E('أسرة')}${E('إبل')}${E('أخ')}</li><li>الفعل <b>الماضي الثلاثي</b>: ${E('أكل')}${E('أخذ')}</li><li>الفعل <b>الرباعي</b> ماضياً وأمراً ومصدراً: ${E('أكرم')}${E('أرسل')}${E('إكرام')}</li><li><b>المضارع</b> المبدوء بهمزة المتكلم: ${E('أكتب')}${E('أذهب')}</li><li><b>الضمائر</b>: ${E('أنا')}${E('أنتَ')}</li><li>بعض <b>الحروف</b>: ${E('إلى')}${E('أو')}${E('إنّ')}</li></ul>`],
+['ثانياً: همزة الوصل 🔄',`<b>تعريفها:</b> همزة <b>تُنطق في بدء الكلام فقط</b>، وتسقط من النطق إذا وُصلت الكلمة بما قبلها.<br><b>كتابتها:</b> تُكتب <b>ألفاً (ا) من غير رأس همزة</b>.<br><b>أمثلة:</b> ${E('اسم',1)}${E('اكتب',1)}${E('انطلق',1)}<br><b>سبب التسمية:</b> لأنها تُوصل الكلام بما قبله، ففي قولنا (قال المعلم: اكتبْ) تُنطق الهمزة، أمّا في (فاكتبْ) فتسقط الهمزة ويُنطق الكلام متصلاً.`],
+['مواضع همزة الوصل 🔄',`<ul><li><b>أل التعريف</b>: ${E('القلم',1)}${E('الشمس',1)}</li><li><b>الأسماء العشرة</b>: ${E('اسم',1)}${E('ابن',1)}${E('ابنة',1)}${E('امرؤ',1)}${E('امرأة',1)}${E('اثنان',1)}${E('اثنتان',1)}${E('است',1)}${E('ابنم',1)}${E('ايمن',1)}</li><li>الفعل <b>الخماسي والسداسي</b> ماضياً وأمراً ومصدراً: ${E('انطلق',1)}${E('اندفع',1)}${E('انطلاق',1)}${E('استخرج',1)}${E('استخراج',1)}</li><li><b>أمر</b> الفعل <b>الثلاثي</b>: ${E('اكتب',1)}${E('اذهب',1)}${E('اجلس',1)}</li></ul>`],
+['حيلتان تساعدانك 🧪',`<b>الحيلة الأولى: اختبار الواو.</b> ضع حرف الواو قبل الكلمة ثم انطقها:<br>${E('وأكل')} الهمزة ظاهرة ← <b>قطع</b><br>${E('واكتب',1)} الهمزة ساقطة ← <b>وصل</b><br><b>الحيلة الثانية: عدّ حروف الفعل الماضي.</b><ul><li>ثلاثي (أكل) ← ماضيه قطع، وأمره (اكتب) <b>وصل</b>.</li><li>رباعي (أكرم) ← ماضيه وأمره ومصدره <b>قطع</b>.</li><li>خماسي أو سداسي (انطلق، استمع) ← <b>وصل</b> دائماً.</li></ul>`],
+['خلاصة الدرس 📋',`<div class="card" style="padding:6px"><table><tr><th></th><th>⭐ القطع</th><th>🔄 الوصل</th></tr><tr><td>النطق</td><td>دائماً</td><td>أول الكلام فقط</td></tr><tr><td>الكتابة</td><td>أ / إ</td><td>ا</td></tr><tr><td>أمثلة</td><td>أسد، إلى، أكرم</td><td>اسم، القلم، انطلق</td></tr></table></div>أنت الآن مستعد للتدريبات. اركب المنزلقة! 🛝`]];
+function intro(k){k=k||0;page(SL[k][0]+` (${k+1}/${SL.length})`,`<div class="card">${SL[k][1]}</div><div class="row">${k?'<button class="btn" id="p">▶ السابق</button>':''}<button class="btn g" id="n">${k<SL.length-1?'التالي ◀':'ابدأ التدريبات 🛝'}</button></div>`);
+st.querySelectorAll('.ex').forEach(e=>e.onclick=()=>say(e.dataset.s));
+if(k)document.getElementById('p').onclick=()=>intro(k-1);
+document.getElementById('n').onclick=()=>{window.scrollTo(0,0);k<SL.length-1?intro(k+1):go(2)}}
+
+const TW=[['أرض',0,'اسم همزته قطع'],['ابن',1,'من الأسماء العشرة'],['أكرم',0,'فعل رباعي'],['استخرج',1,'فعل ماضٍ سداسي'],['إلى',0,'حرف جر همزته قطع'],['اذهب',1,'فعل أمر ثلاثي'],['أنتَ',0,'ضمير همزته قطع'],['الشمس',1,'همزة أل التعريف']];
+function teams(){let n=0;page('🛝 التدريب الأول: اسحب الكلمة إلى مسبحها','<div class="row"><div class="zone" data-k="0"><h3>⭐ مسبح القطع</h3></div><div class="zone w" data-k="1"><h3>🔄 مسبح الوصل</h3></div></div><div class="row" style="margin-top:20px">'+sh(TW).map(w=>`<div class="chip" data-w="${w[0]}">${w[0]}</div>`).join('')+'</div><div id="fb"></div>');
+st.querySelectorAll('.chip').forEach(ch=>{let sx,sy,on=false;const w=TW.find(x=>x[0]==ch.dataset.w);
+ch.onpointerdown=e=>{on=true;sx=e.clientX;sy=e.clientY;ch.setPointerCapture(e.pointerId);ch.classList.add('up')};
+ch.onpointermove=e=>{if(on)ch.style.transform=`translate(${e.clientX-sx}px,${e.clientY-sy}px) scale(1.15)`};
+ch.onpointerup=e=>{if(!on)return;on=false;ch.style.visibility='hidden';const t=document.elementFromPoint(e.clientX,e.clientY);ch.style.visibility='';ch.classList.remove('up');const z=t&&t.closest('.zone');
+if(!z){ch.style.transform='';return}
+if(+z.dataset.k==w[1]){const s=document.createElement('span');s.textContent=w[0];z.append(s);ch.remove();win();fb('✅ '+w[0]+': '+w[2]);if(++n==TW.length)setTimeout(()=>go(3),2300)}
+else{ch.style.transform='';bad(z);fb('🟥 فكّر من جديد: الكلمة ('+w[0]+') ليست من هذا المسبح. تلميح: '+(w[1]?'هي من مواضع همزة الوصل.':'همزتها تُنطق دائماً.'))}}})}
+
+const CN=[['اثنتان','من الأسماء العشرة'],['أرسل','فعل ماضٍ رباعي'],['انتصار','مصدر الفعل الخماسي'],['أكتب','فعل مضارع بهمزة المتكلم'],['اجلس','فعل أمر ثلاثي']];
+function connect(){let sel=null,n=0;page('🔗 التدريب الثاني: وصّل الكلمة بنوعها','<div class="cn"><svg id="ln"></svg><div class="col">'+CN.map(c=>`<button class="it l" data-c="${c[0]}" data-s="a">${c[0]}</button>`).join('')+'</div><div class="col">'+sh(CN).map(c=>`<button class="it r" data-c="${c[0]}" data-s="b">${c[1]}</button>`).join('')+'</div></div><div id="fb"></div>');
+const cn=st.querySelector('.cn'),svg=document.getElementById('ln');
+st.querySelectorAll('.it').forEach(b=>b.onclick=()=>{if(b.classList.contains('done'))return;
+if(b.dataset.s=='a')say(b.dataset.c);
+if(!sel||sel.dataset.s==b.dataset.s){if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');return}
+if(sel.dataset.c==b.dataset.c){const r=cn.getBoundingClientRect(),a=sel.getBoundingClientRect(),c=b.getBoundingClientRect(),l=document.createElementNS('http://www.w3.org/2000/svg','line');
+l.setAttribute('x1',a.left+a.width/2-r.left);l.setAttribute('y1',a.top+a.height/2-r.top);l.setAttribute('x2',c.left+c.width/2-r.left);l.setAttribute('y2',c.top+c.height/2-r.top);l.setAttribute('stroke','#ffb703');l.setAttribute('stroke-width','8');l.setAttribute('stroke-linecap','round');svg.append(l);
+sel.classList.remove('sel');sel.classList.add('done');b.classList.add('done');sel=null;win();fb('✅ صحيح!');if(++n==5)setTimeout(()=>go(4),2300)}
+else{const o=sel;o.classList.remove('sel');sel=null;bad(b);fb('🟥 ليست هذه الإجابة الصحيحة، أعد المحاولة.')}})}
+
+const CR=[
+[['استمع',1,'فعل ماضٍ سداسي ← همزة وصل'],['عمر',0,'لا همزة في أوله'],['إلى',0,'حرف جر ← همزة قطع'],['أمه',0,'اسم ← همزة قطع'],['ثم',0,'لا همزة في أوله'],['ارتدى',1,'فعل ماضٍ خماسي ← همزة وصل'],['ثوب',0,'لا همزة في أوله'],['السباحة',1,'همزة أل التعريف ← وصل']],
+[['قال',0,'لا همزة في أوله'],['المدرب',1,'همزة أل التعريف ← وصل'],['لعمر',0,'لا همزة في أوله'],['اسبح',1,'فعل أمر ثلاثي ← همزة وصل'],['بسرعة',0,'لا همزة في أوله'],['وأكمل',0,'فعل ماضٍ رباعي ← همزة قطع'],['السباق',1,'همزة أل التعريف ← وصل'],['بنجاح',0,'لا همزة في أوله']]];
+function circle(k){k=k||0;if(k>=2)return go(5);const R=CR[k],T=R.filter(w=>w[1]).length;let f=0;
+page(`⭕ التدريب الثالث (${k+1}/2): حوِّط كل كلمة فيها همزة وصل`,'<div class="sen">'+R.map((w,i)=>`<button class="wd" data-i="${i}">${w[0]}</button>`).join('')+'</div><div id="fb"></div>');say('حوّط الكلمات التي فيها همزة وصل');
+st.querySelectorAll('.wd').forEach(b=>b.onclick=()=>{if(b.classList.contains('ring'))return;const w=R[b.dataset.i];
+if(w[1]){b.classList.add('ring');win();fb('✅ '+w[0]+': '+w[2]);if(++f==T)setTimeout(()=>circle(k+1),2300)}
+else{bad(b);fb('🟥 ليست همزة وصل. '+w[0]+': '+w[2])}})}
+
+const FL=[['___ندفع عمر في المنزلقة المائية',2,'اندفع: فعل ماضٍ خماسي ← همزة وصل (ا)'],['___كل عمر الفاكهة بعد السباحة',0,'أكل: فعل ماضٍ ثلاثي ← همزة قطع (أ)'],['___ذهب إلى حوض الأمواج يا عمر',2,'اذهب: فعل أمر ثلاثي ← همزة وصل (ا)'],['___ستمتع عمر بالألعاب المائية',2,'استمتع: فعل ماضٍ سداسي ← همزة وصل (ا)'],['___خبر عمر أصدقاءه بالرحلة',0,'أخبر: فعل ماضٍ رباعي ← همزة قطع (أ)'],['___ثنان من الأصدقاء ينتظران عمر',2,'اثنان: من الأسماء العشرة ← همزة وصل (ا)'],['سبح عمر ___لى الجانب الآخر',1,'إلى: حرف جر ← همزة قطع وتُكتب (إ)']];
+function fill(){say('اختر الحرف المناسب لتكتمل الكلمة');let i=0,lock=false;const items=sh(FL);
+function show(){lock=false;const it=items[i];page(`✏️ التدريب الرابع (${i+1}/${items.length}): أكمل الجملة`,`<div class="ball s">${it[0]}</div><div class="row">${['أ','إ','ا'].map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join('')}</div><div id="fb"></div>`);
+const bs=st.querySelectorAll('.opt');
+bs.forEach(b=>b.onclick=()=>{if(lock)return;lock=true;const ok=+b.dataset.k==it[1];bs[it[1]].classList.add('ok');
+if(ok){win();fb('✅ '+it[2]);setTimeout(nx,2300)}
+else{b.classList.add('no');bad(b);fb('🟥 الإجابة الصحيحة: '+['أ','إ','ا'][it[1]]+'<br>'+it[2]+'<br><button class="btn g" id="nx">التالي ◀</button>');document.getElementById('nx').onclick=nx}})}
+function nx(){if(++i>=items.length)go(6);else show()}show()}
+
+function end(){const m=score>=MAX*.85?['🥇','الميدالية الذهبية']:score>=MAX*.6?['🥈','الميدالية الفضية']:['🥉','الميدالية البرونزية'];
+st.innerHTML=`<h1>وصلت إلى القمة! 🏁</h1><div class="big">🏆${m[0]}</div><div class="t">البطل عمر<br>جمعت ${score} من ${MAX} قطرة 💧<br>${m[1]}</div><div class="card">تذكّر دائماً: همزة القطع <b>تُنطق دائماً</b> وتُكتب (أ، إ)، وهمزة الوصل <b>تسقط في وسط الكلام</b> وتُكتب (ا).</div><button class="btn" id="re">رحلة جديدة 🔁</button><button class="btn g" id="rv">مراجعة الشرح 📖</button>`;
+splash();tone([523,659,784,1047,1319],.12,'triangle',.2);confetti();say('أحسنت يا بطل! جمعت '+score+' من '+MAX+' قطرة');
+document.getElementById('re').onclick=()=>go(0);document.getElementById('rv').onclick=()=>go(1)}
+start();
+</script>
+</body>
+</html>
